@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		#body_background
+		{
+			background-image: url("aa.jpg");
+			background-color: black;
+		}
+
+		#main_div
+		{
+			margin-left: 350px;
+			margin-right: 350px;
+		}
+
+		.title
+		{
+			font-size: 38px;
+
+		}
+
+		.float_left
+		{
+			float: left;
+		}
+
+		.float_right
+		{
+			float: right;
+		}
+
+		.clear_all
+		{
+			clear: both;
+		}
+
+		.div_abc_alignment
+		{
+			border-width: 5px;
+			border-radius: 15px;
+			border-color: pink;
+			border-style: solid;
+			height: 100px;
+			background-color: white;
+		}
+
+		..div_abc_alignment_align
+		{
+			text-align: center;
+		}
+		.perticuler
+		{
+			border-style: solid;
+			margin-top: 20px;
+			border-width: 2px;
+			border-radius: 10px;
+			height: 20px;
+			width: 450px;
+			font-size: 20px;
+			padding:10px;
+			
+		}
+
+		.Div_B_margin_right
+		{
+			margin-right: 40px;
+		}
+
+		.submit_button
+		{
+			margin-bottom: 10px
+			margin-top: 15px;
+			width: 190px;
+			background-color: lightgray;
+			font-size: 28px;
+		}
+
+		.item_list
+		{
+			width:150px;
+		}
+
+		.item_quantity
+		{
+			width:50px;
+		}
+
+		.list__top_bottom_margin
+		{
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.div_b_hight
+		{
+			height: 400px;
+		}
+
+		.total_align
+		{
+			margin-top: 200px;
+			margin-left: 30px;
+		}
+
+		.label_font
+		{
+			font-size: 20px;
+		}
+
+		.div_a_padd
+		{
+			padding: 5px;
+		}
+	</style>
+	<title>Bill Genrator</title>
+</head>
+<body  id="body_background">
+	<!--Main_dic-->
+	<div id="main_div">
+		<!--Head part-->
+		<div align="center" class="div_abc_alignment div_a_padd"><!--Div A-->
+			<header>
+					<label style="font-size: 28px; align-self: center;"> AllDayOff Restaurant </label> <br><!--Name-->
+					<p id="date_time" style="al"></p3><!--Gst--& --Date-time-->
+					<p style=" clear: left; font-size: 15px;"> Address : Foram Mall, #abc,560076 </p><!--Address-->
+			</header>
+			
+		</div>
+
+		<!--pet-->
+		<div  align="center" class="div_abc_alignment div_b_hight"><!--Div B-->
+			<div id="add_tax" class="perticuler"><!--Perticulers-->
+				<label id="Sr_label" class="float_left Div_B_margin_right">Sr</label>
+				<label id="index_label"  class="float_left Div_B_margin_right">Index</label>
+				<label id="Quantity_label" class="float_left Div_B_margin_right">Quantity</label>
+				<label id="Price_label" class="float_left Div_B_margin_right">Price</label>
+				<label id="Total_label" class="float_left">Total</label>
+			</div>
+			<div  id="total_id" >
+				<label class="total_align"> Total = </label><label id="total_show" class="total_align"> </label>
+			</div>
+		</div>
+		
+
+		<!--Tail part-->
+		<div class="div_abc_alignment"><!--Div C-->
+			<div id="remove_elem" align="center" class="list__top_bottom_margin">
+				<label><b>Select items : </b></label>
+				<select id="select_itm" class="item_list">
+					<option>Tea</option>
+					<option>Breakfast</option>
+					<option>Lunch</option>
+					<option>Dinner</option>
+					<option>Desert</option>
+				</select>
+				<select id="select_quntity" class="item_quantity">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<button id="add_itm">Add</button>
+			</div><!--item line-->
+			<div align="center">
+				<button class="submit_button" id="submit_all">Total Due</button>
+				<button  onclick="add_tax_new()">Add Tax</button>
+				<button  onclick="add_tip_new()">Service Charge</button>
+			</div><!--button line-->
+		</div>
+	</div>
+	<script type="text/javascript">
+		var bill_no=1;
+
+		var d=new Date();
+		document.getElementById("date_time").innerHTML=d
+		var count=1;
+		var price=1;
+		var total_price=1;
+		var total_total=0;
+		function add_btn()
+		{
+			var itm=document.getElementById("select_itm").value
+			var qty=document.getElementById("select_quntity").value
+
+			var p_creation=document.createElement('p')
+			p_creation.textContent=count;
+			var btn=document.getElementById('Sr_label');
+                btn.appendChild(p_creation);
+
+			var p_creation=document.createElement('p')
+			p_creation.textContent=itm;
+			var btn=document.getElementById('index_label');
+                btn.appendChild(p_creation);
+
+            var p_creation=document.createElement('p')
+			p_creation.textContent=qty;
+			var btn=document.getElementById('Quantity_label');
+                btn.appendChild(p_creation);
+
+            var p_creation=document.createElement('p')
+			var btn=document.getElementById('Price_label');
+				if (itm=="Tea")
+				{
+					price=10;
+				}
+				else if (itm== "Breakfast")
+				{
+					price=30;
+				}
+				else if (itm== "Lunch")
+				{
+					price=60;
+				}
+				else if (itm== "Dinner")
+				{
+					price=80;
+				}
+                else if (itm== "Desert")
+				{
+					price=80;
+				}
+				else
+				{
+					price=1
+				}
+			p_creation.textContent=price;
+			btn.appendChild(p_creation);
+			
+			var p_creation=document.createElement('p')
+			var btn=document.getElementById('Total_label');
+				if (itm=="Tea")
+				{
+					total_price=price*qty
+				}
+				else if (itm=="Breakfast")
+				{
+					total_price=price*qty
+				}
+				else if (itm=="Lunch")
+				{
+					total_price=price*qty
+				}
+				else if (itm=="Dinner")
+				{
+					total_price=price*qty
+				}
+				else if (itm="Desert")
+				{
+					total_price=price*qty
+				}
+				else
+				{
+					total_price=price*qty
+				}
+				p_creation.textContent=total_price;
+                btn.appendChild(p_creation);
+
+                <!--remove btn-->
+                /*
+                if (count==1)
+                {
+                	var p_creation_rem=document.createElement('button')
+                	p_creation_rem.textContent="Remove";
+                	p_creation.setAttribute('id','remove_last')
+					var btn=document.getElementById('remove_elem');
+               		 btn.appendChild(p_creation_rem);
+
+               		 var tax_create=document.createElement('button')
+                	tax_create.textContent="Add tax";
+                	tax_create.setAttribute('id','add_taxin')
+					var tax_btn=document.getElementById('remove_elem');
+               		 tax_btn.appendChild(tax_create);
+               		             		 /*
+						
+               		
+
+               		 var p_creation_in=document.createElement('input')
+                	p_creation_in.setAttribute('id',"tax_in")
+                	var aa=20+"px"
+                	p_creation_in.setAttribute('width','aa')
+					var btn3=document.getElementById('add_tax');
+               		 btn3.appendChild(p_creation_in);
+
+               		 var p_creation_in1=document.createElement('input')
+                	p_creation_in1.setAttribute('id',"tax_in1")
+                	var aa1=20+"px"
+                	p_creation_in1.setAttribute('width','aa1')
+					var btn31=document.getElementById('tax_in');
+               		 btn31.appendChild(p_creation_in1);
+                }*/
+                
+
+			total_total+=total_price;
+			count+=1;
+		}
+		add_itm.addEventListener("click",add_btn)
+/*
+		function remove_last_itm()
+		{
+			var btn = document.getElementById('index_label');
+            var p_input = document.querySelectorAll('p');
+			if (count<1)
+            {
+                alert("There is No element");
+            }
+            else
+            {
+                for(var i=0; i<=p_input.length-1; i++)
+                {
+                    console.log(p_input.length-1);
+                     btn.removeChild(p_input[p_input.length-1]);
+                }
+            }
+		}
+		remove_elem.addEventListener("click",remove_last_itm)
+*/
+		function add_tip_new()
+		{
+			var add_tip=total_total+50;
+			console.log(add_tip);
+			total_total=add_tip;
+		}
+
+		function add_tax_new()
+		{
+			var add_final=total_total*0.05;
+			console.log(add_final);
+			total_total+=add_final;
+
+		}
+		
+		function submit_function()
+		{
+			document.getElementById("total_show").innerHTML=total_total;
+			bill_no+=1;
+		}
+		submit_all.addEventListener("click",submit_function)
+	</script>
+</body>
+</html>
