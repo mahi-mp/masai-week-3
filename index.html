@@ -1,3 +1,5 @@
+<!-- Thanks for visiting it means a lot for me -->
+<!-- you can visit my profile https://mahi-mp.github.io/maheshpawate.github.io/ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +43,7 @@
 			border-radius: 15px;
 			border-color: pink;
 			border-style: solid;
-			height: 100px;
+			height: 100%;
 			background-color: white;
 		}
 
@@ -112,11 +114,19 @@
 		{
 			padding: 5px;
 		}
+
+		#total_show
+		{
+			border: solid 2px maroon;
+			padding: 5px;
+			background: #FFB300;
+			height: 20px;
+			width: 40px;
+		}
 	</style>
 	<title>Bill Genrator</title>
 </head>
-<body  id="body_background">
-	<!--Main_dic-->
+<body  id="body_background"><!--Main_dic-->
 	<div id="main_div">
 		<!--Head part-->
 		<div align="center" class="div_abc_alignment div_a_padd"><!--Div A-->
@@ -125,7 +135,6 @@
 					<p id="date_time" style="al"></p3><!--Gst--& --Date-time-->
 					<p style=" clear: left; font-size: 15px;"> Address : Foram Mall, #abc,560076 </p><!--Address-->
 			</header>
-			
 		</div>
 
 		<!--pet-->
@@ -137,11 +146,7 @@
 				<label id="Price_label" class="float_left Div_B_margin_right">Price</label>
 				<label id="Total_label" class="float_left">Total</label>
 			</div>
-			<div  id="total_id" >
-				<label class="total_align"> Total = </label><label id="total_show" class="total_align"> </label>
-			</div>
 		</div>
-		
 
 		<!--Tail part-->
 		<div class="div_abc_alignment"><!--Div C-->
@@ -163,6 +168,9 @@
 				</select>
 				<button id="add_itm">Add</button>
 			</div><!--item line-->
+			<div  id="total_id" >
+				<label class="total_align"> Total = </label><label id="total_show" class="total_align"></label>
+			</div>
 			<div align="center">
 				<button class="submit_button" id="submit_all">Total Due</button>
 				<button  onclick="add_tax_new()">Add Tax</button>
@@ -256,71 +264,21 @@
 				}
 				p_creation.textContent=total_price;
                 btn.appendChild(p_creation);
-
-                <!--remove btn-->
-                /*
-                if (count==1)
-                {
-                	var p_creation_rem=document.createElement('button')
-                	p_creation_rem.textContent="Remove";
-                	p_creation.setAttribute('id','remove_last')
-					var btn=document.getElementById('remove_elem');
-               		 btn.appendChild(p_creation_rem);
-
-               		 var tax_create=document.createElement('button')
-                	tax_create.textContent="Add tax";
-                	tax_create.setAttribute('id','add_taxin')
-					var tax_btn=document.getElementById('remove_elem');
-               		 tax_btn.appendChild(tax_create);
-               		             		 /*
-						
-               		
-
-               		 var p_creation_in=document.createElement('input')
-                	p_creation_in.setAttribute('id',"tax_in")
-                	var aa=20+"px"
-                	p_creation_in.setAttribute('width','aa')
-					var btn3=document.getElementById('add_tax');
-               		 btn3.appendChild(p_creation_in);
-
-               		 var p_creation_in1=document.createElement('input')
-                	p_creation_in1.setAttribute('id',"tax_in1")
-                	var aa1=20+"px"
-                	p_creation_in1.setAttribute('width','aa1')
-					var btn31=document.getElementById('tax_in');
-               		 btn31.appendChild(p_creation_in1);
-                }*/
-                
-
-			total_total+=total_price;
+				total_total+=total_price;
 			count+=1;
 		}
 		add_itm.addEventListener("click",add_btn)
-/*
-		function remove_last_itm()
-		{
-			var btn = document.getElementById('index_label');
-            var p_input = document.querySelectorAll('p');
-			if (count<1)
-            {
-                alert("There is No element");
-            }
-            else
-            {
-                for(var i=0; i<=p_input.length-1; i++)
-                {
-                    console.log(p_input.length-1);
-                     btn.removeChild(p_input[p_input.length-1]);
-                }
-            }
-		}
-		remove_elem.addEventListener("click",remove_last_itm)
-*/
+
 		function add_tip_new()
 		{
 			var add_tip=total_total+50;
 			console.log(add_tip);
 			total_total=add_tip;
+
+			var create_el1=document.createElement('p');
+			create_el1.innerHTML="Service Charge added + 50 = " +add_tip +"<br> Final amount =" +total_total;
+			var crbtn1=document.getElementById('total_id');
+			crbtn1.appendChild(create_el1);
 		}
 
 		function add_tax_new()
@@ -329,6 +287,10 @@
 			console.log(add_final);
 			total_total+=add_final;
 
+			var create_el=document.createElement('p');
+			create_el.innerHTML="Tax * 5% = "+ total_total*0.05 +"<br> Final amount =" +total_total;
+			var crbtn=document.getElementById('total_id');
+			crbtn.appendChild(create_el);
 		}
 		
 		function submit_function()
